@@ -7,5 +7,5 @@ services:
 
 before_install:
   - docker build -t dockersimeon/epa .
-  - docker run -d -p 127.0.0.1:80:4567 dockersimeon/epa
+  - docker run -d -p 127.0.0.1:80:80 dockersimeon/epa
   - docker ps -a
