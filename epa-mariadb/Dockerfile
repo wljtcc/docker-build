@@ -10,5 +10,5 @@ LABEL MAINTAINER="Wellington Luiz <https://github.com/wljtcc>"
 #------------------------------------------------------------------------------
 
 RUN mv /etc/mysql/my.cnf /etc/mysql/my.cnf.old
-ADD my.cnf /etc/mysql/my.cnf
+ADD ./my.cnf /etc/mysql/my.cnf
 RUN chmod 0644 /etc/mysql/my.cnf
