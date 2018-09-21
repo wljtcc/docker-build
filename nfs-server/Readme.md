@@ -17,7 +17,7 @@
         - /opt/storage:/nfsshare
 
     networks:
-    nfs-server:
+      nfs-server:
 
 ### Mount Options
 
