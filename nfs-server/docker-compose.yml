@@ -1,0 +1,14 @@
+version: "3.4"
+services: 
+
+  nfs-server:
+    image: wljtcc/nfs-server:latest
+    restart: always
+    hostname: nfs-server
+    privileged: true
+    network_mode: host
+    volumes: 
+    - /opt/storage:/nfsshare
+
+networks:
+  nfs-server:
