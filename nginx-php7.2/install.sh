@@ -2,20 +2,6 @@
 
 # Install Packages
 apk update
-apk add --no-cache \
-    nginx \
-    php7 \
-    php7-common \
-    php7-fpm \
-    php7-mcrypt \
-    php7-mbstring \
-    php7-soap \
-    php7-openssl \
-    php7-gmp \
-    php7-pdo_odbc \
-    php7-json \
-    php7-dom \
-    php7-pdo \
     php7-zip \
     php7-mysqli \
     php7-sqlite3 \
@@ -35,7 +21,8 @@ apk add --no-cache \
     php7-curl \
     php7-ctype \
     php7-tokenizer \
-    tzdata
+    php7-xmlwriter \
+    php7-session
 
 adduser -D -g 'www' www
 

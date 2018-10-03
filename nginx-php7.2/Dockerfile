@@ -11,4 +11,6 @@ RUN chmod +x /run.sh
 RUN sh /install.sh
 RUN rm /install.sh
 
+WORKDIR /var/www/localhost/htdocs
+
 CMD [ "/run.sh" ]
