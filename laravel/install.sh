@@ -2,6 +2,23 @@
 
 # Install Packages
 apk update
+apk add --no-cache \
+    nginx \
+    tzdata \
+    curl \
+    php7 \
+    php7-common \
+    php7-fpm \
+    php7-mcrypt \
+    php7-mbstring \
+    php7-soap \
+    php7-openssl \
+    php7-gmp \
+    php7-pdo_odbc \
+    php7-json \
+    php7-dom \
+    php7-pdo \
+    php7-phar \
     php7-zip \
     php7-mysqli \
     php7-sqlite3 \
@@ -23,6 +40,7 @@ apk update
     php7-tokenizer \
     php7-xmlwriter \
     php7-session
+    
 
 adduser -D -g 'www' www
 
@@ -66,44 +84,6 @@ echo "<?php
 	phpinfo();
 ?>" | tee -a /var/www/localhost/htdocs/phpinfo.php
 
-# Config NGINX
-cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.default
-rm /etc/nginx/nginx.conf
-
-echo "user                            www;
-worker_processes                1;
-
-error_log                       /var/log/nginx/error.log warn;
-pid                             /var/run/nginx.pid;
-
-events {
-    worker_connections          1024;
-}
-
-http {
-    include                     /etc/nginx/mime.types;
-    default_type                application/octet-stream;
-    sendfile                    on;
-    access_log                  /var/log/nginx/access.log;
-    keepalive_timeout           3000;
-    server {
-        listen                  80;
-        root                    /var/www/localhost/htdocs;
-        index                   index.html index.htm index.php;
-        server_name             localhost;
-        client_max_body_size    32m;
-        error_page              500 502 503 504  /50x.html;
-        location = /50x.html {
-              root              /var/lib/nginx/html;
-        }
-        location ~ \.php$ {
-              fastcgi_pass      127.0.0.1:9000;
-              fastcgi_index     index.php;
-              include           fastcgi.conf;
-        }
-    }
-}" | tee -a /etc/nginx/nginx.conf
-
 
 echo "
 <!DOCTYPE html>
@@ -123,7 +103,5 @@ echo "
 apk del
 rm -rf /var/cache/apk/*
 
-# Start NGINX
-# php-fpm7
-# Start NGINX
-# nginx -g "daemon on;"
+# Install composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
