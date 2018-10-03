@@ -6,16 +6,17 @@ LABEL maintainer="wljtcc@gmail.com"
 LABEL site="www.inovve.com.br"
 
 ADD install.sh /
-ADD run.sh /
-RUN chmod +x /run.sh
+ADD run.sh /usr/local/bin
+ADD laravel.sh /usr/local/bin
+RUN rm -rf /etc/nginx/nginx.conf
+ADD nginx/nginx.conf /etc/nginx/
+RUN chmod +x /usr/local/bin/run.sh \
+    && chmod +x /usr/local/bin/laravel.sh
 RUN sh /install.sh
 RUN rm /install.sh
 
 WORKDIR /var/www/localhost/htdocs
 
-#ENTRYPOINT [ "composer install" ]
-#ENTRYPOINT [ "php artisan config:cache" ]
-
 EXPOSE 80
 
-CMD [ "/run.sh" ]
+CMD [ "run.sh" ]

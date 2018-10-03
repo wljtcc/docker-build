@@ -84,53 +84,6 @@ echo "<?php
 	phpinfo();
 ?>" | tee -a /var/www/localhost/htdocs/phpinfo.php
 
-# Config NGINX
-cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.default
-rm /etc/nginx/nginx.conf
-
-echo "user                            www;
-worker_processes                1;
-
-error_log                       /var/log/nginx/error.log warn;
-pid                             /var/run/nginx.pid;
-
-events {
-    worker_connections          1024;
-}
-
-http {
-    include                     /etc/nginx/mime.types;
-    default_type                application/octet-stream;
-    sendfile                    on;
-    access_log                  /var/log/nginx/access.log;
-    keepalive_timeout           3000;
-    server {
-        listen                  80;
-        root                    /var/www/localhost/htdocs/public;
-        index                   index.html index.htm index.php;
-        server_name             localhost;
-        client_max_body_size    32m;
-        error_page              500 502 503 504  /50x.html;
-
-        location / {
-            try_files $uri $uri/ /index.php?$query_string;
-        }
-
-        location = /50x.html {
-              root              /var/lib/nginx/html;
-        }
-        location ~ \.php$ {
-              fastcgi_pass      127.0.0.1:9000;
-              fastcgi_index     index.php;
-              include           fastcgi.conf;
-        }
-        # Block access config file beginning with '.'
-        location ~ /\. {
-            deny all;
-        }
-    }
-}" | tee -a /etc/nginx/nginx.conf
-
 
 echo "
 <!DOCTYPE html>
