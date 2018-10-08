@@ -16,6 +16,7 @@ apk add --no-cache \
     php7-gmp \
     php7-pdo_odbc \
     php7-json \
+    php7-fileinfo \
     php7-dom \
     php7-pdo \
     php7-phar \

@@ -2,6 +2,7 @@
 
 cd /var/www/localhost/htdocs
 
-composer install
 php artisan config:cache
-php artisan route:cache
+#php artisan route:cache
+composer dump-autoload
+composer install
