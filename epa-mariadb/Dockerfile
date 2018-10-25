@@ -2,8 +2,9 @@
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
 
-FROM mariadb:10.3.6
+FROM mariadb:10.3.10
 LABEL MAINTAINER="Wellington Luiz <https://github.com/wljtcc>"
+LABEL VERSION="MariaDB-10.3.10"
 
 #------------------------------------------------------------------------------
 # Install:
@@ -11,4 +12,9 @@ LABEL MAINTAINER="Wellington Luiz <https://github.com/wljtcc>"
 
 RUN mv /etc/mysql/my.cnf /etc/mysql/my.cnf.old
 ADD ./my.cnf /etc/mysql/my.cnf
+RUN apt update -y \
+    && apt-get upgrade -y \
+    && apt-get upgrade -y \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 RUN chmod 0644 /etc/mysql/my.cnf

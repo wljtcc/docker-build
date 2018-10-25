@@ -3,7 +3,8 @@
 #------------------------------------------------------------------------------
 
 FROM debian:stretch-slim
-MAINTAINER Wellington Luiz <https://github.com/wljtcc>
+LABEL maintainer="Wellington Luiz <https://github.com/wljtcc>"
+LABEL version="dockersimeon/epa:php7.1.23"
 
 #------------------------------------------------------------------------------
 # Install:
