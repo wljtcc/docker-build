@@ -4,7 +4,7 @@
 
 FROM debian:stretch-slim
 LABEL maintainer="Wellington Luiz <https://github.com/wljtcc>"
-LABEL version="dockersimeon/epa:php7.1.23"
+LABEL version="dockersimeon/epa:php7.1.24"
 
 #------------------------------------------------------------------------------
 # Install:
