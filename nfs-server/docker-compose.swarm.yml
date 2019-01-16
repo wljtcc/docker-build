@@ -1,0 +1,27 @@
+version: "3.4"
+services:
+
+  nfsserver:
+    image: wljtcc/nfs-server:latest
+    restart: always
+    hostname: nfs-server
+    privileged: true
+    networks: 
+      - nfsserver
+    volumes: 
+      - /opt/storage:/nfsshare
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.node.role == nfsserver]
+        
+networks: 
+  nfsserver:
+    driver: overlay
+    attachable: true
+
+# docker node update --label-add 'node.role=manager' NODE
+# docker volume create -d local -o type=none -o device=/opt/storage/postgresql/data -o o=bind postgresql-data
+# docker network create postgresql
+# docker stack deploy -c docker-compose.yml portainer
