@@ -22,6 +22,7 @@ echo "Install Deps"
 apt -y install apt-utils
 apt -y install \
         curl \
+        tzdata \
         locales \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
