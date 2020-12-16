@@ -31,7 +31,8 @@ apt -y install \
         libldap2-dev \
         libfontconfig1 \
         libxext6 \
-        libxrender1
+        libxrender1 \
+        cron
 
 apt -y install apache2 \
                apache2-bin \
@@ -50,10 +51,15 @@ apt -y install php7.3 \
                php7.3-imap \
                php7.3-ldap \
                php7.3-mysql \
-               php7.3-mbstring 
+               php7.3-mbstring \
                php7.3-zip \
                php-xdebug \
-               php7.3-xml
+               php7.3-xml \
+               php7.3-gmp
+
+printf "\n" | pecl install mcrypt
+
+echo extension=mcrypt.so >> /etc/php/7.3/apache2/conf.d/20-mcrypt.ini
 
 echo "Enable Modules PHP"
 a2enmod rewrite
@@ -67,7 +73,7 @@ echo "LANG=pt_BR.UTF-8" > /etc/locale.conf
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 sed -i -e "s/export CHARSET=UTF-8//g" /etc/profile
 echo "export CHARSET=\"pt_BR UTF-8\npt_BR.UTF-8 UTF-8\nen_US UTF-8\nen_US.UTF-8 UTF-8\"" >> /etc/profile
-source /etc/profile
+echo "export EPA_PATH" >> /etc/profile
 
 echo "Criando o redirecionamento para o EPA"
 mv /var/www/html/index.html /var/www/html/apache2.html
@@ -101,3 +107,8 @@ rm -rf /var/lib/apt/lists/*
 
 # Set permission run.sh
 chmod 0777 /etc/init.d/run.sh
+
+touch /var/spool/cron/crontabs/root
+echo "* * * * * php \$EPA_PATH/api/artisan schedule:run &> /dev/null" >> /var/spool/cron/crontabs/root
+chown root:crontab /var/spool/cron/crontabs/root
+chmod 0600 /var/spool/cron/crontabs/root
