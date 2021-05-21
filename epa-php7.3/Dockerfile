@@ -2,9 +2,9 @@
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
 
-FROM debian:9.6-slim
-LABEL maintainer="Wellington Luiz <https://github.com/wljtcc>"
-LABEL version="dockersimeon/epa:php7.3.25"
+FROM debian:10.9-slim
+LABEL autor="Wellington Luiz <https://github.com/wljtcc>"
+LABEL version="php7.3.27"
 
 #------------------------------------------------------------------------------
 # Install:
