@@ -2,9 +2,9 @@
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
 
-FROM debian:9.13-slim
+FROM debian:10.10-slim
 LABEL autor="Wellington Luiz <https://github.com/wljtcc>"
-LABEL version="php7.3.28"
+LABEL version="php7.3.31"
 
 #------------------------------------------------------------------------------
 # Install:
