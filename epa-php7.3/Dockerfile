@@ -2,9 +2,9 @@
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
 
-FROM dockersimeon/epa:php7.3.28
+FROM dockersimeon/epa:php7.3.31
 LABEL autor="Wellington Luiz <https://github.com/wljtcc>"
-LABEL version="php7.3.31"
+LABEL version="php7.3.32"
 
 #------------------------------------------------------------------------------
 # Install:
