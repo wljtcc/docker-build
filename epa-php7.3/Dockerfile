@@ -2,7 +2,7 @@
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
 
-FROM debian:10.12-slim
+FROM dockersimeon/epa:php7.3.32
 LABEL autor="Wellington Luiz <https://github.com/wljtcc>"
 LABEL version="php7.3.33"
 
@@ -10,11 +10,8 @@ LABEL version="php7.3.33"
 # Install:
 #------------------------------------------------------------------------------
 
-COPY install.sh /
-COPY run.sh /etc/init.d/
-RUN sh /install.sh
-COPY php.ini /etc/php/7.3/apache2/
-COPY apache2.conf /etc/apache2/
+COPY update.sh /
+RUN sh /update.sh
 
 #------------------------------------------------------------------------------
 # Expose ports, entrypoint and command:
